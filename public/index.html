@@ -8,8 +8,9 @@
     <div id="main">
         <header><h1>My images</h1></header>
             <main>
+                <h3 id="latest">Latest images:</h3>
                 <div id="gridContainer">
-                <div class="singleImages" v-for="image in images">
+                <div class="imageContainer" v-for="image in images">
                     <img v-bind:src="image.url" class="actualImage">
                      <p>{{image.title}} by {{image.username}}</p>
                 </div>

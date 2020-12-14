@@ -9,6 +9,11 @@ body {
 header {
     padding: 10px;
 }
+
+#latest {
+    padding: 10px;
+}
+
 #gridContainer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -17,13 +22,16 @@ header {
     margin: 10px;
 }
 
-.singleImages {
+
+.imageContainer {
     width: 230px;
     height: 230px;
-    border: 1px black solid;
+    border: 2px black solid;
 }
 
 .actualImage {
     width: 230px;
     height: 230px;
+    overflow: hidden;
+    object-fit: cover;
 }
