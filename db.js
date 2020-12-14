@@ -7,7 +7,7 @@ var db = spicedPg(
 module.exports.receiveImages = () => {
     const q = `SELECT *
     FROM images 
-    ORDER BY created_at 
+    ORDER BY created_at DESC
     LIMIT 12`;
     return db.query(q);
 };
