@@ -28,13 +28,14 @@ const uploader = multer({
 
 app.post("/upload", uploader.single("image"), s3.upload, (req, res) => {
     console.log("req.body", req.body.title);
-    let title = req.body.title;
-    let url = `${s3Url}${req.file.filename}`;
-    let username = "rens";
-    let description = "description";
     if (req.file) {
-        db.putImage(url, username, title, description);
-        res.json({ success: true });
+        const singleImage = {
+            title: req.body.title,
+            url: `${s3Url}${req.file.filename}`,
+            username: req.body.username,
+            description: req.body.description,
+        };
+        db.putImage(singleImage.url, singleImage.username,singleImage.title, singleImage.description).then(()=> res.json(singleImage));
     } else {
         res.json({ success: false });
     }

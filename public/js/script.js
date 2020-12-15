@@ -2,6 +2,10 @@ new Vue({
     el: "#main",
     data: {
         images: [],
+        title: "",
+        image: null,
+        username: "",
+        url: "",
     },
     mounted: function () {
         var self = this;
@@ -14,14 +18,6 @@ new Vue({
                 console.log("error", error);
             });
     },
-});
-
-new Vue({
-    el: "#uploader",
-    data: {
-        title: "",
-        image: null,
-    },
     methods: {
         handleFileChange: function (e) {
             this.image = e.target.files[0];
@@ -29,11 +25,13 @@ new Vue({
         upload: function (e) {
             e.preventDefault();
             var formData = new FormData();
-
             formData.append("title", this.title);
             formData.append("image", this.image);
-
-            axios.post("upload", formData).then(console.log);
+            formData.append("username", this.username);
+            formData.append("url", this.url);
+            axios.post("/upload", formData).then((res) => {
+                this.images.unshift(res.data);
+            });
         },
     },
 });

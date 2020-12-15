@@ -43,3 +43,7 @@ header {
     overflow: hidden;
     object-fit: cover;
 }
+
+#uploadForm {
+    padding: 10px;
+}
