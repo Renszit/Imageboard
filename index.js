@@ -5,7 +5,7 @@ const multer = require("multer");
 const uidSafe = require("uid-safe");
 const path = require("path");
 const s3 = require("./s3");
-const s3Url = require("./config");
+const { s3Url } = require("./config");
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
@@ -27,9 +27,13 @@ const uploader = multer({
 });
 
 app.post("/upload", uploader.single("image"), s3.upload, (req, res) => {
-    console.log("req.body", req.body);
-    console.log("req.file", req.file);
+    console.log("req.body", req.body.title);
+    let title = req.body.title;
+    let url = `${s3Url}${req.file.filename}`;
+    let username = "rens";
+    let description = "description";
     if (req.file) {
+        db.putImage(url, username, title, description);
         res.json({ success: true });
     } else {
         res.json({ success: false });
