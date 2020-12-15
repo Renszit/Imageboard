@@ -8,9 +8,13 @@ body {
 
 header {
     padding: 10px;
+    font-family: "Space grotesk";
+    font-weight: 700;
 }
 
 #latest {
+    font-family: "space grotesk";
+    font-weight: 500;
     padding: 10px;
 }
 
@@ -22,10 +26,14 @@ header {
     margin: 10px;
 }
 
-
 .imageContainer {
     width: 230px;
-    height: 230px;
+    font-family: "space grotesk";
+    font-weight: 300;
+    font-size: 12px;
+    height: 255px;
+    padding: 10px;
+    background-color: white;
     border: 2px black solid;
 }
 
