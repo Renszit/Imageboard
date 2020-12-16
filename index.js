@@ -35,7 +35,12 @@ app.post("/upload", uploader.single("image"), s3.upload, (req, res) => {
             username: req.body.username,
             description: req.body.description,
         };
-        db.putImage(singleImage.url, singleImage.username,singleImage.title, singleImage.description).then(()=> res.json(singleImage));
+        db.putImage(
+            singleImage.url,
+            singleImage.username,
+            singleImage.title,
+            singleImage.description
+        ).then(() => res.json(singleImage));
     } else {
         res.json({ success: false });
     }
@@ -45,6 +50,18 @@ app.get("/images", (req, res) => {
     db.receiveImages().then(({ rows }) => {
         res.json(rows);
     });
+});
+
+app.get("/imageId/:id", (req, res) => {
+    const { id } = req.params;
+    db.getSingleImage(id)
+        .then((result) => {
+            // console.log(res);
+            res.json(result.rows[0]);
+        })
+        .catch((err) => {
+            console.log("error in image get", err);
+        });
 });
 
 app.use(express.static("public"));

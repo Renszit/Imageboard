@@ -1,20 +1,27 @@
 * {
     margin: 0;
+    font-family: "space grotesk";
 }
 
 body {
     /* background-color: paleturquoise; */
-    background-image: linear-gradient( 135deg, #FFF886 10%, #F072B6 100%);
+    background-image: linear-gradient(135deg, #fff886 10%, #f072b6 100%);
 }
 
 header {
     padding: 10px;
-    font-family: "Space grotesk";
     font-weight: 700;
 }
 
+
+
+footer {
+    padding: 10px;
+    font-weight: 300;
+    font-size: 10px;
+}
+
 #latest {
-    font-family: "space grotesk";
     font-weight: 500;
     padding: 10px;
 }
@@ -30,7 +37,6 @@ header {
 .imageContainer {
     width: 230px;
     box-shadow: 8px 10px 0px -3px #000000;
-    font-family: "space grotesk";
     font-weight: 300;
     font-size: 12px;
     height: 255px;
@@ -48,4 +54,36 @@ header {
 
 #uploadForm {
     padding: 10px;
+}
+
+.overlayComponent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.44);
+    z-index: 1;
+}
+
+.imageComponent {
+    position: fixed;
+    border: 10px white solid;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    z-index: 2;
+}
+
+.templateImg {
+    width: 800px;
+    height: 500px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.templateFooter {
+    font-weight: 300;
+    font-size: 8px;
 }
