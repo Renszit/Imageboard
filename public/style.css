@@ -67,6 +67,7 @@ footer {
 }
 
 .imageComponent {
+    box-shadow: 8px 10px 0px -3px #000000;
     position: fixed;
     border: 10px white solid;
     top: 50%;
@@ -80,7 +81,7 @@ footer {
     width: 800px;
     height: 500px;
     overflow: hidden;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .templateFooter {
