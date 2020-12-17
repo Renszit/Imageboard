@@ -11,7 +11,6 @@
      </header>
     <main>
          <div id="main">
-            
             <img-component v-if="imageId" :id="imageId" @close="closeModal"></img-component>
 
             <form id="uploadForm" method="POST" action="/upload" enctype="multipart/form-data">
@@ -27,7 +26,10 @@
                 <img v-bind:src="image.url" class="actualImage" @click="showModal(image.id)">
                 <p>{{image.title}}</p>
             </div>
-
+            </div>
+            <div id="moreButtonContainer" >
+                <button id="moreButton" @click="getMore">click here for more</button>
+            </div>
         </div>
     </main> 
         <footer>created by renszit at spiced academy with vue.js</footer>

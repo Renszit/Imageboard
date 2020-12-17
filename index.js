@@ -26,8 +26,10 @@ const uploader = multer({
     },
 });
 
+// app.get('/more')
+
 app.post("/upload", uploader.single("image"), s3.upload, (req, res) => {
-    console.log("req.body", req.body.title);
+    // console.log("req.body", req.body.title);
     if (req.file) {
         const singleImage = {
             title: req.body.title,
@@ -40,7 +42,9 @@ app.post("/upload", uploader.single("image"), s3.upload, (req, res) => {
             singleImage.username,
             singleImage.title,
             singleImage.description
-        ).then(() => res.json(singleImage));
+        )
+            .then((result) => (singleImage.id = result.rows[0].id))
+            .then(() => res.json(singleImage));
     } else {
         res.json({ success: false });
     }
@@ -61,6 +65,17 @@ app.get("/imageId/:id", (req, res) => {
         })
         .catch((err) => {
             console.log("error in image get", err);
+        });
+});
+
+app.get("/more/:id", (req, res) => {
+    var lowestId = req.params.id;
+    db.moreImages(lowestId)
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((err) => {
+            console.log("error in getting more images", err);
         });
 });
 
