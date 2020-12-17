@@ -7,11 +7,14 @@
 </head>
 <body>
     <header>
-        <h1>We ♥ these imgs.</h1>
+        <h1>Teenage bedroom posters</h1>
      </header>
     <main>
          <div id="main">
-            <img-component v-if="imageId" :id="imageId" @close="closeModal"></img-component>
+            <img-component v-if="imageId" :id="imageId" @close="closeModal">
+                <comment-component>
+                </comment-component>
+            </img-component>
 
             <form id="uploadForm" method="POST" action="/upload" enctype="multipart/form-data">
                 <input name="title" placeholder="title" v-model="title">
@@ -28,7 +31,7 @@
             </div>
             </div>
             <div id="moreButtonContainer" >
-                <button id="moreButton" @click="getMore">click here for more</button>
+                <button v-if="moreButton" id="moreButton" @click="getMore">click here for more images</button>
             </div>
         </div>
     </main> 

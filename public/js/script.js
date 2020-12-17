@@ -85,6 +85,9 @@
                     for (let i = 0; i < response.data.rows.length; i++) {
                         self.images.push(response.data.rows[i]);
                     }
+                    if (!response.data.rows[1]) {
+                        self.moreButton = false;
+                    }
                     console.log(lowestId);
                 });
             },
