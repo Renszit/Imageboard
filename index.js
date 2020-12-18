@@ -68,6 +68,29 @@ app.get("/imageId/:id", (req, res) => {
         });
 });
 
+app.get("/comments/:id", (req, res) => {
+    const { id } = req.params;
+    // console.log("get request comments", id);
+    db.getComments(id)
+        .then((result) => {
+            console.log(result.rows[0]);
+            res.json(result.rows[0]);
+        })
+        .catch((err) => {
+            console.log("err in comment get", err);
+        });
+});
+
+app.post("/comments", (req, res) => {
+    const { comment, username, id } = req.body;
+    db.postComments(comment, username, id)
+        .then((result) => {
+            console.log(result);
+            res.json(result.rows[0]);
+        })
+        .catch((err) => console.log("error in posting comment", err));
+});
+
 app.get("/more/:id", (req, res) => {
     var lowestId = req.params.id;
     db.moreImages(lowestId)

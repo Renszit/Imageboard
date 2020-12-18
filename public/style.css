@@ -19,6 +19,12 @@ footer {
     font-size: 10px;
 }
 
+#x {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
+
 #latest {
     font-weight: 500;
     padding: 10px;
@@ -26,7 +32,7 @@ footer {
 
 #gridContainer {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, 345px);
     grid-template-rows: repeat(2, 1fr);
     gap: 10px 10px;
     margin: 10px;
@@ -41,7 +47,7 @@ footer {
     padding: 10px;
     background-color: white;
     border: 2px black solid;
-    justify-self:center;
+    justify-self: center;
 }
 
 .actualImage {
@@ -90,7 +96,7 @@ footer {
 
 #moreButtonContainer {
     text-align: center;
-    width:100%;
+    width: 100%;
     position: relative;
     margin: 20px;
 }

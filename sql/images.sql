@@ -29,3 +29,14 @@ INSERT INTO images (url, username, title, description) VALUES (
     'To be or not to be',
     'That is the question.'
 );
+
+INSERT INTO comments (comment, username, image_id)
+VALUES ('Looks nice!', 'it is I', 33);
+
+CREATE TABLE comments(
+    id SERIAL PRIMARY KEY,
+    comment TEXT NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    image_id INTEGER NOT NULL REFERENCES images(id)
+);

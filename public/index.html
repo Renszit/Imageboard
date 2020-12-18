@@ -1,19 +1,17 @@
 <!doctype html>
 <html>
 <head>
-    <title>Imageboard</title>
+    <title>👨‍🎤 Bedroom posters 🎸</title>
     <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>Teenage bedroom posters</h1>
+        <h1>Bedroom posters</h1>
      </header>
     <main>
          <div id="main">
             <img-component v-if="imageId" :id="imageId" @close="closeModal">
-                <comment-component>
-                </comment-component>
             </img-component>
 
             <form id="uploadForm" method="POST" action="/upload" enctype="multipart/form-data">
@@ -26,7 +24,7 @@
             <h3 id="latest">Latest images:</h3>
             <div id="gridContainer">
             <div class="imageContainer" v-for="image in images" >
-                <img v-bind:src="image.url" class="actualImage" @click="showModal(image.id)">
+               <a :href="'#'+ image.id"> <img v-bind:src="image.url" class="actualImage"> </a>
                 <p>{{image.title}}</p>
             </div>
             </div>
@@ -38,17 +36,31 @@
         <footer>created by renszit at spiced academy with vue.js</footer>
 
     
-    <script id="comTemplate" type="text/x-template">
-        <div class="overlayComponent" @click="closeModal">
+    <script id="Template" type="text/x-template">
+        <div class="overlayComponent">
             <div class="imageComponent">
+                <p id="x" @click="closeModal">close</p>
                 <h3>{{image.title}}</h3>
                 <img :src="image.url" class="templateImg">
                 <p>{{image.description}}</p> 
                 <p class="templateFooter">Uploaded by {{image.username}} on {{image.created_at}}</p>
+                <add-comments :id="id"></add-comments>
             </div>
         </div>
     </script>
 
+    <script id="comtemplate" type="text/x-template">
+        <div class="commentsContainer">
+            <div class ="commentBox">
+                <p>{{comments.comment}}</p>
+                <p>{{comments.username}}{{comments.created_at}}</p>
+            </div>
+                <p>Leave your comment here: </p>
+                <input type="text" name="comment" v-model="comment" placeholder="comment">
+                <input type="text" name="username" placeholder="username" v-model="username">
+                <button @click="postcom">post</button>
+        </div>
+    </script>
 
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>

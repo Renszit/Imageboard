@@ -1,6 +1,43 @@
 (function () {
+    Vue.component("addComments", {
+        template: "#comtemplate",
+        props: ["id"],
+        data: function () {
+            return { comments: [], username: "", comment: "" };
+        },
+        mounted: function () {
+            var self = this;
+            axios
+                .get("/comments/" + this.id)
+                .then(function (response) {
+                    // console.log(response.data);
+                    self.comments = response.data;
+                })
+                .catch(function (err) {
+                    console.log("err in mounted function comments", err);
+                });
+        },
+        methods: {
+            postcom: function (e) {
+                var self = this;
+                e.preventDefault();
+                console.log("clicked");
+                var usercomment = {
+                    username: this.username,
+                    comment: this.comment,
+                    id: this.id,
+                };
+                console.log(usercomment);
+                axios.post("/comments", usercomment).then(function (response) {
+                    console.log(response);
+                    self.comments.unshift(response.data);
+                }).catch((err)=>console.log("error in postreq", err));
+            },
+        },
+    });
+
     Vue.component("imgComponent", {
-        template: "#comTemplate",
+        template: "#Template",
         props: ["id"],
         data: function () {
             return {
@@ -21,6 +58,7 @@
         methods: {
             closeModal: function () {
                 this.$emit("close");
+                history.pushState({}, "", "/");
             },
         },
     });
@@ -34,7 +72,7 @@
             description: "",
             username: "",
             url: "",
-            imageId: null,
+            imageId: location.hash.slice(1),
             lowestId: null,
             moreButton: true,
         },
@@ -49,15 +87,14 @@
                 .catch(function (error) {
                     console.log("error", error);
                 });
+            addEventListener("hashchange", function () {
+                self.imageId = location.hash.slice(1);
+            });
         },
 
         methods: {
             handleFileChange: function (e) {
                 this.image = e.target.files[0];
-            },
-            showModal: function (imageId) {
-                // console.log("clicked!", imageId);
-                this.imageId = imageId;
             },
             closeModal: function () {
                 this.imageId = null;
