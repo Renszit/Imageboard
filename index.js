@@ -7,6 +7,12 @@ const path = require("path");
 const s3 = require("./s3");
 const { s3Url } = require("./config");
 
+app.use(
+    express.json({
+        extended: false,
+    })
+);
+
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
         callback(null, "uploads");
@@ -73,7 +79,7 @@ app.get("/comments/:id", (req, res) => {
     // console.log("get request comments", id);
     db.getComments(id)
         .then((result) => {
-            console.log(result.rows[0]);
+            // console.log(result.rows[0]);
             res.json(result.rows[0]);
         })
         .catch((err) => {
@@ -82,7 +88,8 @@ app.get("/comments/:id", (req, res) => {
 });
 
 app.post("/comments", (req, res) => {
-    const { comment, username, id } = req.body;
+    const { username, comment, id } = req.body;
+    console.log("db comment:", comment);
     db.postComments(comment, username, id)
         .then((result) => {
             console.log(result);

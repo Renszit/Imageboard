@@ -3,7 +3,7 @@
         template: "#comtemplate",
         props: ["id"],
         data: function () {
-            return { comments: [], username: "", comment: "" };
+            return { comments: {}, username: "", comment: "" };
         },
         mounted: function () {
             var self = this;
@@ -17,21 +17,39 @@
                     console.log("err in mounted function comments", err);
                 });
         },
+        watch: {
+            id: function () {
+                console.log("imageId update");
+                var self = this;
+                axios
+                    .get("/comments/" + this.id)
+                    .then(function (response) {
+                        // console.log(response.data);
+                        self.comments = response.data;
+                    })
+                    .catch(function (err) {
+                        console.log("err in mounted function comments", err);
+                    });
+            },
+        },
         methods: {
             postcom: function (e) {
-                var self = this;
+                console.log("comment upload!");
                 e.preventDefault();
-                console.log("clicked");
-                var usercomment = {
+                const usercomment = {
                     username: this.username,
                     comment: this.comment,
                     id: this.id,
                 };
-                console.log(usercomment);
-                axios.post("/comments", usercomment).then(function (response) {
-                    console.log(response);
-                    self.comments.unshift(response.data);
-                }).catch((err)=>console.log("error in postreq", err));
+                var self = this;
+                // console.log("comment:" usercomment);
+                axios
+                    .post("/comments", usercomment)
+                    .then(function (response) {
+                        console.log(response.data);
+                        self.comments.unshift(response.data);
+                    })
+                    .catch((err) => console.log("error in postreq", err));
             },
         },
     });
@@ -54,6 +72,20 @@
                 .catch(function (err) {
                     console.log("error in component", err);
                 });
+        },
+        watch: {
+            id: function () {
+                console.log("imageId update");
+                var self = this;
+                axios
+                    .get(`/imageId/${this.id}`)
+                    .then(function (response) {
+                        self.image = response.data;
+                    })
+                    .catch(function (err) {
+                        console.log("error in component", err);
+                    });
+            },
         },
         methods: {
             closeModal: function () {
