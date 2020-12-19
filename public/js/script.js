@@ -45,14 +45,15 @@
                     id: this.id,
                 };
                 // console.log("comment:" usercomment);
-                axios.post("/comments", usercomment).then(
-                    ((res) => {
+                axios
+                    .post("/comments", usercomment)
+                    .then((res) => {
                         console.log(res.data);
                         self.comments.unshift(res.data[0]);
                     })
-                ).catch((err)=> {
-                    console.log(err);
-                });
+                    .catch((err) => {
+                        console.log(err);
+                    });
             },
         },
     });
