@@ -80,7 +80,7 @@ app.get("/comments/:id", (req, res) => {
     db.getComments(id)
         .then((result) => {
             // console.log(result.rows[0]);
-            res.json(result.rows[0]);
+            res.json(result.rows);
         })
         .catch((err) => {
             console.log("err in comment get", err);
@@ -89,11 +89,11 @@ app.get("/comments/:id", (req, res) => {
 
 app.post("/comments", (req, res) => {
     const { username, comment, id } = req.body;
-    console.log("db comment:", comment);
+    // console.log("db comment:", comment);
     db.postComments(comment, username, id)
         .then((result) => {
-            console.log(result);
-            res.json(result.rows[0]);
+            // console.log(result);
+            res.json(result.rows);
         })
         .catch((err) => console.log("error in posting comment", err));
 });

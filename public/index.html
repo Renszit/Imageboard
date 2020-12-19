@@ -51,12 +51,12 @@
 
     <script id="comtemplate" type="text/x-template">
         <div class="commentsContainer">
-            <div class ="commentBox" v-for="comment in comments" :key='comments.comment' >
-                <p>{{comment}}</p>
-                <p>{{username}}{{created_at}}</p>
+            <div class ="commentBox" v-for="comment in comments" >
+                <p>{{comment.comment}}</p>
+                <p>{{comment.username}}{{comment.created_at}}</p>
             </div>
                 <p>Leave your comment here: </p>
-                <input type="text" name="comment" v-model="comment" placeholder="comment">
+                <input type="text" name="comment" placeholder="comment" v-model="comment">
                 <input type="text" name="username" placeholder="username" v-model="username">
                 <button @click="postcom">post</button>
         </div>

@@ -3,14 +3,18 @@
         template: "#comtemplate",
         props: ["id"],
         data: function () {
-            return { comments: {}, username: "", comment: "" };
+            return {
+                comments: [],
+                username: "",
+                comment: "",
+                created_at: "",
+            };
         },
         mounted: function () {
             var self = this;
             axios
                 .get("/comments/" + this.id)
                 .then(function (response) {
-                    // console.log(response.data);
                     self.comments = response.data;
                 })
                 .catch(function (err) {
@@ -19,13 +23,11 @@
         },
         watch: {
             id: function () {
-                console.log("imageId update");
                 var self = this;
                 axios
                     .get("/comments/" + this.id)
-                    .then(function (response) {
-                        // console.log(response.data);
-                        self.comments = response.data;
+                    .then((res) => {
+                        self.comments = res.data;
                     })
                     .catch(function (err) {
                         console.log("err in mounted function comments", err);
@@ -35,21 +37,20 @@
         methods: {
             postcom: function (e) {
                 console.log("comment upload!");
+                var self = this;
                 e.preventDefault();
-                const usercomment = {
+                var usercomment = {
                     username: this.username,
                     comment: this.comment,
                     id: this.id,
                 };
-                var self = this;
                 // console.log("comment:" usercomment);
-                axios
-                    .post("/comments", usercomment)
-                    .then(function (response) {
-                        console.log(response.data);
-                        self.comments.unshift(response.data);
-                    })
-                    .catch((err) => console.log("error in postreq", err));
+                axios.post("/comments", usercomment).then(
+                    ((res) => {
+                        // console.log(res.data[0]);
+                        self.comments.unshift(res.data);
+                    }).catch((err) => console.log("error in postreq", err))
+                );
             },
         },
     });
@@ -147,17 +148,17 @@
             getMore: function (e) {
                 e.preventDefault();
                 var lowestId = this.images[this.images.length - 1].id;
-                console.log(lowestId);
+                // console.log(lowestId);
                 var self = this;
                 axios.get("/more/" + lowestId).then((response) => {
-                    console.log(response.data.rows);
+                    // console.log(response.data.rows);
                     for (let i = 0; i < response.data.rows.length; i++) {
                         self.images.push(response.data.rows[i]);
                     }
                     if (!response.data.rows[1]) {
                         self.moreButton = false;
                     }
-                    console.log(lowestId);
+                    // console.log(lowestId);
                 });
             },
         },
