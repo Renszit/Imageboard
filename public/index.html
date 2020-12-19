@@ -52,8 +52,8 @@
     <script id="comtemplate" type="text/x-template">
         <div class="commentsContainer">
             <div class ="commentBox" v-for="comment in comments" >
-                <p>{{comment.comment}}</p>
-                <p>{{comment.username}}{{comment.created_at}}</p>
+                <p id="comment">{{comment.comment}}</p>
+                <p id="commentUser">by {{comment.username}} on {{comment.created_at}}</p>
             </div>
                 <p>Leave your comment here: </p>
                 <input type="text" name="comment" placeholder="comment" v-model="comment">

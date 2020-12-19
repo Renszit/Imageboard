@@ -47,10 +47,12 @@
                 // console.log("comment:" usercomment);
                 axios.post("/comments", usercomment).then(
                     ((res) => {
-                        // console.log(res.data[0]);
-                        self.comments.unshift(res.data);
-                    }).catch((err) => console.log("error in postreq", err))
-                );
+                        console.log(res.data);
+                        self.comments.unshift(res.data[0]);
+                    })
+                ).catch((err)=> {
+                    console.log(err);
+                });
             },
         },
     });

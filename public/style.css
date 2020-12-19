@@ -22,7 +22,7 @@ footer {
 #x {
     position: fixed;
     right: 0;
-    bottom: 0;
+    top: 0;
 }
 
 #latest {
@@ -74,10 +74,15 @@ footer {
 .imageComponent {
     box-shadow: 8px 10px 0px -3px #000000;
     position: fixed;
+    display: flex;
+    overflow: scroll;
+    flex-direction: column;
     border: 10px white solid;
-    top: 50%;
+    top: 5%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    width: fit-content;
+    height: 90vh;
+    transform: translate(-50%);
     background-color: white;
     z-index: 2;
 }
@@ -85,7 +90,7 @@ footer {
 .templateImg {
     width: 800px;
     height: 500px;
-    overflow: hidden;
+    justify-self: center;
     object-fit: contain;
 }
 
@@ -103,4 +108,18 @@ footer {
 
 #moreButton {
     width: 400px;
+}
+
+.commentBox {
+    margin: 10px;
+    border: black 1px dashed;
+    padding: 5px;
+}
+
+#comment {
+    font-weight: 300;
+}
+
+#commentUser {
+    font-size: 10px;
 }
