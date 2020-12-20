@@ -34,6 +34,23 @@
                     });
             },
         },
+        filters: {
+            date: function (str) {
+                if (!str) {
+                    return "(n/a)";
+                }
+                str = new Date(str);
+                return (
+                    (str.getDate() < 10 ? "0" : "") +
+                    str.getDate() +
+                    "-" +
+                    (str.getMonth() < 9 ? "0" : "") +
+                    (str.getMonth() + 1) +
+                    "-" +
+                    str.getFullYear()
+                );
+            },
+        },
         methods: {
             postcom: function (e) {
                 console.log("comment upload!");
@@ -87,13 +104,30 @@
                         if (response.data) {
                             self.image = response.data;
                         } else {
-                            self.$emit('close');
+                            self.$emit("close");
                             history.pushState({}, "", "/");
                         }
                     })
                     .catch(function (err) {
                         console.log("error in component", err);
                     });
+            },
+        },
+        filters: {
+            date: function (str) {
+                if (!str) {
+                    return "(n/a)";
+                }
+                str = new Date(str);
+                return (
+                    (+(str.getDate() < 10 ? "0" : "")) +
+                    str.getDate() +
+                    "-" +
+                    (str.getMonth() < 9 ? "0" : "") +
+                    (str.getMonth() + 1) +
+                    "-" +
+                    str.getFullYear()
+                );
             },
         },
         methods: {
