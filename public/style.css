@@ -123,3 +123,12 @@ footer {
 #commentUser {
     font-size: 10px;
 }
+
+#leave {
+    margin: 10px;
+}
+
+#commentDelete {
+    text-align: right;
+    font-size: 10px;
+}

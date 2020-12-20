@@ -120,7 +120,7 @@
                 }
                 str = new Date(str);
                 return (
-                    (+(str.getDate() < 10 ? "0" : "")) +
+                    (str.getDate() < 10 ? "0" : "") +
                     str.getDate() +
                     "-" +
                     (str.getMonth() < 9 ? "0" : "") +
