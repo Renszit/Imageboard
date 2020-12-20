@@ -84,7 +84,12 @@
                 axios
                     .get(`/imageId/${this.id}`)
                     .then(function (response) {
-                        self.image = response.data;
+                        if (response.data) {
+                            self.image = response.data;
+                        } else {
+                            self.$emit('close');
+                            history.pushState({}, "", "/");
+                        }
                     })
                     .catch(function (err) {
                         console.log("error in component", err);
