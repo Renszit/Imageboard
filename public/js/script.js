@@ -186,7 +186,7 @@
                 axios.post("/upload", formData).then((res) => {
                     this.images.unshift(res.data);
                 });
-            },
+            },  
             getMore: function (e) {
                 e.preventDefault();
                 var lowestId = this.images[this.images.length - 1].id;
