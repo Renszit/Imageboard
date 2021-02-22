@@ -17,7 +17,7 @@ This is a single page application created with Vue.js at the Spiced Academy boot
 
 ## Comment image
 
-<img src="https://media.giphy.com/media/HSxx5OcMmGiZhN5J1E/giphy.gif">
+<img src="https://media.giphy.com/media/8ZsmIeES1ij4n6Mnf3/giphy.gif">
 
 ## Scroll through posts
 
