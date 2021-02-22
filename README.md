@@ -11,7 +11,7 @@ This is a single page application created with Vue.js at the Spiced Academy boot
 -   PostgreSQL
 -   Express
 
-## Upload Image, saved on AWS s3 bucket
+## Upload Image
 
 <img src="https://media.giphy.com/media/HSxx5OcMmGiZhN5J1E/giphy.gif">
 
