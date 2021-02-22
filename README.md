@@ -13,12 +13,12 @@ This is a single page application created with Vue.js at the Spiced Academy boot
 
 ## Upload Image, saved on AWS s3 bucket
 
-<img width="300" src="http://www.giphy.com/gifs/HSxx5OcMmGiZhN5J1E">
+<div style="width:100%;height:0;padding-bottom:50%;position:relative;"><iframe src="https://giphy.com/embed/HSxx5OcMmGiZhN5J1E" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/HSxx5OcMmGiZhN5J1E">via GIPHY</a></p>
 
 ## Comment image
 
-<img width="300" src="http://www.giphy.com/gifs/8ZsmIeES1ij4n6Mnf3">
+<div style="width:100%;height:0;padding-bottom:50%;position:relative;"><iframe src="https://giphy.com/embed/8ZsmIeES1ij4n6Mnf3" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/8ZsmIeES1ij4n6Mnf3">via GIPHY</a></p>
 
 ## Scroll through posts
 
-<img width="300" src="http://www.giphy.com/gifs/3ClVmqrHiD8nGcjlMo">
+<div style="width:100%;height:0;padding-bottom:50%;position:relative;"><iframe src="https://giphy.com/embed/8ZsmIeES1ij4n6Mnf3" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/8ZsmIeES1ij4n6Mnf3">via GIPHY</a></p>
