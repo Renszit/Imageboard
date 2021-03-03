@@ -81,14 +81,23 @@
         data: function () {
             return {
                 image: {},
+                yes: false,
+                no: false,
             };
         },
         mounted: function () {
             var self = this;
+            console.log(self);
             axios
                 .get(`/imageId/${this.id}`)
                 .then(function (response) {
                     self.image = response.data;
+                    console.log(response.data.selected);
+                    if (response.data.selected == "Y") {
+                        self.yes = true;
+                    } else {
+                        self.no = true;
+                    }
                 })
                 .catch(function (err) {
                     console.log("error in component", err);
@@ -147,6 +156,7 @@
             description: "",
             username: "",
             url: "",
+            selected: "",
             imageId: location.hash.slice(1),
             lowestId: null,
             moreButton: true,
@@ -157,6 +167,7 @@
             axios
                 .get("/images")
                 .then(function (response) {
+                    // console.log(response.data);
                     self.images = response.data;
                 })
                 .catch(function (error) {
@@ -171,9 +182,11 @@
             handleFileChange: function (e) {
                 this.image = e.target.files[0];
             },
+
             closeModal: function () {
                 this.imageId = null;
             },
+
             upload: function (e) {
                 e.preventDefault();
                 var formData = new FormData();
@@ -182,11 +195,12 @@
                 formData.append("id", this.id);
                 formData.append("username", this.username);
                 formData.append("url", this.url);
+                formData.append("selected", this.selected);
                 formData.append("description", this.description);
                 axios.post("/upload", formData).then((res) => {
                     this.images.unshift(res.data);
                 });
-            },  
+            },
             getMore: function (e) {
                 e.preventDefault();
                 var lowestId = this.images[this.images.length - 1].id;

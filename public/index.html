@@ -18,14 +18,22 @@
                 <input name="title" placeholder="title" v-model="title">
                 <input name="description" placeholder="description" v-model="description">
                 <input name="username" placeholder="username" v-model="username">
+                <select name="selected" v-model="selected">
+                    <option value="Y">I like this artist a lot!</option>
+                    <option value="N">I do NOT like this artist. At ALL!</option>
+                </select>
                 <input name="image" type="file" accept="image/*" @change="handleFileChange">
                 <button @click="upload">Upload</button>
             </form> 
             <h3 id="latest">Latest images:</h3>
             <div id="gridContainer">
             <div class="imageContainer" v-for="image in images" >
-               <a :href="'#'+ image.id"> <img v-bind:src="image.url" class="actualImage"> </a>
+               <a :href="'#'+ image.id"> <img v-bind:src="image.url" class="actualImage"></img> </a>
+               <div class="titleCont">
+                <p v-if='image.selected == "Y"'>♥️</p>
+                <p v-if='image.selected == "N"'>🤷‍♂️</p>
                 <p>{{image.title}}</p>
+                </div>
             </div>
             </div>
             <div id="moreButtonContainer" >
@@ -42,7 +50,10 @@
                 <p id="x" @click="closeModal">close</p>
                 <h3>{{image.title}}</h3>
                 <img :src="image.url" class="templateImg">
-                <p>{{image.description}}</p> 
+                <div id="Y" v-if="yes">♥️</div>
+                <div id="N" v-if="no">🤷‍♂️</div>
+                <p>{{image.description}}</p>
+              
                 <p class="templateFooter">Uploaded by {{image.username}} on {{image.created_at | date}}</p>
                 <add-comments :id="id"></add-comments>
             </div>
@@ -59,7 +70,6 @@
                 <input type="text" name="comment" placeholder="comment" v-model="comment">
                 <input type="text" name="username" placeholder="username" v-model="username">
                 <button @click="postcom">post</button>
-                
         </div>
     </script>
 

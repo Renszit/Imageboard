@@ -18,11 +18,11 @@ module.exports.getSingleImage = (id) => {
     return db.query(q, param);
 };
 
-module.exports.putImage = (url, username, title, description) => {
-    const q = `INSERT INTO images(url,username,title,description)
-    VALUES ($1,$2,$3,$4)
+module.exports.putImage = (url, username, title, description, select) => {
+    const q = `INSERT INTO images(url,username,title,description,selected)
+    VALUES ($1,$2,$3,$4,$5)
     RETURNING id`;
-    const param = [url, username, title, description];
+    const param = [url, username, title, description, select];
     return db.query(q, param);
 };
 

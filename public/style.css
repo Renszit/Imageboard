@@ -126,3 +126,23 @@ footer {
 #leave {
     margin: 10px;
 }
+
+#Y {
+    position: absolute;
+    top: 30px;
+    right: 45px;
+    font-size: 100px;
+}
+
+#N {
+    position: absolute;
+    top: 30px;
+    right: 45px;
+    font-size: 100px;
+}
+
+.titleCont {
+    display: flex;
+    align-items: center;
+    padding: 2px;
+}

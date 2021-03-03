@@ -43,12 +43,14 @@ app.post("/upload", uploader.single("image"), s3.upload, (req, res) => {
             url: `${s3Url}${req.file.filename}`,
             username: req.body.username,
             description: req.body.description,
+            selected: req.body.selected,
         };
         db.putImage(
             singleImage.url,
             singleImage.username,
             singleImage.title,
-            singleImage.description
+            singleImage.description,
+            singleImage.selected,
         )
             .then((result) => (singleImage.id = result.rows[0].id))
             .then(() => res.json(singleImage));
